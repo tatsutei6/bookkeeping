@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :validation_codes, only: [:create]
-      resources :session, only: [:create,:destroy]
-      resources :me, only: [:show]
-      resources :items
-      resources :tags
+      resources :session, only: [:create, :destroy]
+      resources :me, only: [:index]
+      resources :items do
+        collection do
+          get :summary
+        end
+      end
+      resources :fetch_tags
     end
   end
 end

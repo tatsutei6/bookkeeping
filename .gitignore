@@ -27,8 +27,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
 /config/credentials/production.key
 
+# Ignore vendor
 /vendor/*
+# Ignore .idea
 /.idea

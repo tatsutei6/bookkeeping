@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>収支項目 API</title>
+    <meta charset="utf-8">
+    <style>
+      
+body {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+
+.container {
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 1;
+}
+
+pre {
+  background-color: #f5f5f5;
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 18px;
+  line-height: 18px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+td.required .name:after {
+  float: right;
+  content: "required";
+  font-weight: normal;
+  color: #F08080;
+}
+
+a{
+  color: #0069d6;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #404040;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-size: 30px;
+  line-height: 36px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+h3{
+  font-size: 18px;
+  line-height: 36px;
+}
+h4 {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+table{
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+  border-collapse: separate;
+  font-size: 13px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+table th {
+  padding-top: 9px;
+  font-weight: bold;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+table th+th, table td+td {
+  border-left: 1px solid #ddd;
+}
+table th, table td {
+  padding: 10px 10px 9px;
+  line-height: 18px;
+  text-align: left;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>収支項目 API</h1>
+
+      <div class="article">
+        <h2>収支項目の取得</h2>
+        <h3>GET /api/v1/items</h3>
+
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                    <span class="name">page</span>
+                </td>
+                <td>
+                  <span class="description">ページ番号</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">start</span>
+                </td>
+                <td>
+                  <span class="description">作成時間スタート（検索条件）</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">end</span>
+                </td>
+                <td>
+                  <span class="description">作成時間エンド（検索条件）</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Response Fields</h3>
+          <table class="response-fields table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                    <span class="name">resources[id]</span>
+                </td>
+                <td>
+                  <span class="description">ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resources[amount]</span>
+                </td>
+                <td>
+                  <span class="description">金額（円）</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Version: HTTP/1.0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5MywiZXhwIjoxNjYyMzk2NDMxfQ.dQmQV7hKA7auhthbbpD4mMnqKoLZDJgCiRAGrj-gMbY
+Accept: application/json
+Content-Type: application/json
+Host: example.org
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">GET /api/v1/items?start=2020-10-20+00%3A00%3A00+%2B0900&amp;end=2020-11-09+00%3A00%3A00+%2B0900</pre>
+
+            <h4>Query Parameters</h4>
+            <pre class="request query_parameters highlight">start: 2020-10-20 00:00:00 +0900
+end: 2020-11-09 00:00:00 +0900</pre>
+
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 0
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: application/json; charset=utf-8
+Vary: Accept
+ETag: W/&quot;5d3c07240ed4357f85c5056b4dc033f6&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 2cb61383-9834-47a6-87ac-e3484011a137
+X-Runtime: 0.021137
+Content-Length: 3969</pre>
+            <h4>Status</h4>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">{
+  &quot;resources&quot;: [
+    {
+      &quot;id&quot;: 173,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.214Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.214Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 174,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.219Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.219Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 175,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.223Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.223Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 176,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.228Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.228Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 177,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.233Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.233Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 178,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.237Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.237Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 179,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.242Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.242Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 180,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.246Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.246Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 181,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.251Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.251Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    },
+    {
+      &quot;id&quot;: 182,
+      &quot;user_id&quot;: 93,
+      &quot;amount&quot;: 100,
+      &quot;note&quot;: null,
+      &quot;tag_ids&quot;: [
+        181
+      ],
+      &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000Z&quot;,
+      &quot;created_at&quot;: &quot;2022-09-05T13:47:11.255Z&quot;,
+      &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.255Z&quot;,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;tags&quot;: [
+        {
+          &quot;id&quot;: 181,
+          &quot;user_id&quot;: 93,
+          &quot;name&quot;: &quot;x&quot;,
+          &quot;sign&quot;: &quot;x&quot;,
+          &quot;deleted_at&quot;: null,
+          &quot;created_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;updated_at&quot;: &quot;2022-09-05T13:47:11.202Z&quot;,
+          &quot;kind&quot;: &quot;expenses&quot;
+        }
+      ]
+    }
+  ],
+  &quot;pager&quot;: {
+    &quot;page&quot;: 1,
+    &quot;per_page&quot;: 10,
+    &quot;count&quot;: 11
+  }
+}</pre>
+      </div>
+    </div>
+  </body>
+</html>
