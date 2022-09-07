@@ -17,7 +17,6 @@ class Api::V1::SessionController < ApplicationController
     else
       # JWTを作成する
       token = user.generate_jwt
-      i = Item.new
 
       return render status: :ok, json: { jwt: token }
     end
